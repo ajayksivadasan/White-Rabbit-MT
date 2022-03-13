@@ -5,9 +5,9 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.aks.whiterabbitmt.data.room.EmployeeDetails;
+import com.aks.whiterabbitmt.data.remote.EmployeeDetailsRemote;
 
-@Database(entities = {EmployeeDetails.class}, version = 1, exportSchema = false)
+@Database(entities = {EmployeeDetailsRemote.class}, version = 1, exportSchema = false)
 
 public abstract class RoomDataBase extends RoomDatabase {
     public static RoomDataBase provideRoomDb(Context context) {
@@ -16,4 +16,6 @@ public abstract class RoomDataBase extends RoomDatabase {
                 .allowMainThreadQueries()
                 .build();
     }
+
+    public abstract RoomDbDao getRoomDbDao();
 }

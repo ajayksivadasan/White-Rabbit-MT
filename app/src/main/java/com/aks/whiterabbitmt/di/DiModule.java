@@ -5,6 +5,7 @@ import android.content.Context;
 import com.aks.whiterabbitmt.utils.retrofit.RetroPublicInterface;
 import com.aks.whiterabbitmt.utils.retrofit.RetrofitNetwork;
 import com.aks.whiterabbitmt.utils.room.RoomDataBase;
+import com.aks.whiterabbitmt.utils.room.RoomDbDao;
 
 import javax.inject.Singleton;
 
@@ -26,14 +27,19 @@ public class DiModule {
 
     @Provides
     @Singleton
+    public RetroPublicInterface providesRetroPublicInterface(Retrofit retrofit) {
+        return retrofit.create(RetroPublicInterface.class);
+    }
+
+    @Provides
+    @Singleton
     public RoomDataBase provideDataBase(@ApplicationContext Context context) {
         return RoomDataBase.provideRoomDb(context);
     }
 
     @Provides
     @Singleton
-    public RetroPublicInterface providesRetroPublicInterface(Retrofit retrofit) {
-        return retrofit.create(RetroPublicInterface.class);
+    public RoomDbDao providesProfileDetailsDao(RoomDataBase roomDbMain) {
+        return roomDbMain.getRoomDbDao();
     }
-
 }
