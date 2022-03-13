@@ -1,5 +1,6 @@
 package com.aks.whiterabbitmt.ui.details;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,9 +33,19 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void initialiseData() {
         Glide.with(context).load(employeeDetailsRemote.getProfileImage()).into(detailsBinding.ivProfileImage);
-
+        detailsBinding.tvProfileName.setText(employeeDetailsRemote.getName());
+        detailsBinding.tvEmail.setText(employeeDetailsRemote.getEmail());
+        detailsBinding.tvPhoneNo.setText(employeeDetailsRemote.getPhone());
+        detailsBinding.tvUserName.setText(employeeDetailsRemote.getUsername());
+        detailsBinding.tvAddress.setText(employeeDetailsRemote.getAddress().getSuite() + "\n"
+                + employeeDetailsRemote.getAddress().getCity() + "\n"
+                + employeeDetailsRemote.getAddress().getStreet() + "\n"
+                + employeeDetailsRemote.getAddress().getZipcode());
+        detailsBinding.tvCompanyDetails.setText(employeeDetailsRemote.getCompany().getName() + "\n"
+                + employeeDetailsRemote.getCompany().getBs() + "\n"
+                + employeeDetailsRemote.getCompany().getCatchPhrase());
     }
-
 }

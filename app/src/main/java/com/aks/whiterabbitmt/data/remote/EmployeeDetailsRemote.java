@@ -109,7 +109,7 @@ public class EmployeeDetailsRemote implements Serializable {
         this.address = address;
     }
 
-    public Object getPhone() {
+    public String getPhone() {
         return phone;
     }
 
