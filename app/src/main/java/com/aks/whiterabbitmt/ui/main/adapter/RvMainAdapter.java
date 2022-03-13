@@ -1,5 +1,6 @@
 package com.aks.whiterabbitmt.ui.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,7 +18,6 @@ import com.aks.whiterabbitmt.data.remote.EmployeeDetailsRemote;
 import com.aks.whiterabbitmt.ui.details.DetailsActivity;
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
 import java.util.List;
 
 public class RvMainAdapter extends RecyclerView.Adapter<RvMainAdapter.RvViewHolder> {
@@ -40,14 +40,17 @@ public class RvMainAdapter extends RecyclerView.Adapter<RvMainAdapter.RvViewHold
         return new RvViewHolder(LayoutInflater.from(context).inflate(R.layout.layout_main_list_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull RvViewHolder holder, int position) {
         holder.tvName.setText(employeeDetailsRemoteList.get(position).getName());
-        holder.tvCompanyName.setText(employeeDetailsRemoteList.get(position).getCompany().getName());
+        if (employeeDetailsRemoteList.get(position).getCompany() != null) {
+            holder.tvCompanyName.setText(employeeDetailsRemoteList.get(position).getCompany().getName() + "");
+        }
         Glide.with(context).load(employeeDetailsRemoteList.get(position).getProfileImage()).into(holder.ivProfileImage);
         holder.llMainForClick.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailsActivity.class);
-            intent.putExtra("dataItem", (Serializable) employeeDetailsRemoteList.get(position));
+            intent.putExtra("dataItem", employeeDetailsRemoteList.get(position));
             context.startActivity(intent);
         });
     }

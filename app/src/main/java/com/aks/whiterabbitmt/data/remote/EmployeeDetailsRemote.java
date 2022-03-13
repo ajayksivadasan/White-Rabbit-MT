@@ -1,12 +1,26 @@
 package com.aks.whiterabbitmt.data.remote;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
-public class EmployeeDetailsRemote implements Serializable {
+
+public class EmployeeDetailsRemote implements Parcelable {
+    public static final Creator<EmployeeDetailsRemote> CREATOR = new Creator<EmployeeDetailsRemote>() {
+        @Override
+        public EmployeeDetailsRemote createFromParcel(Parcel in) {
+            return new EmployeeDetailsRemote(in);
+        }
+
+        @Override
+        public EmployeeDetailsRemote[] newArray(int size) {
+            return new EmployeeDetailsRemote[size];
+        }
+    };
 
     /**
      * id : 1
@@ -52,6 +66,19 @@ public class EmployeeDetailsRemote implements Serializable {
 
     @SerializedName("company")
     private CompanyDTO company;
+
+    public EmployeeDetailsRemote() {
+    }
+
+    protected EmployeeDetailsRemote(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        username = in.readString();
+        email = in.readString();
+        profileImage = in.readString();
+        phone = in.readString();
+        website = in.readString();
+    }
 
     public static String getStringFromList(List<EmployeeDetailsRemote> remoteList) {
         return new Gson().toJson(remoteList);
@@ -131,5 +158,21 @@ public class EmployeeDetailsRemote implements Serializable {
 
     public void setCompany(CompanyDTO company) {
         this.company = company;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(username);
+        parcel.writeString(email);
+        parcel.writeString(profileImage);
+        parcel.writeString(phone);
+        parcel.writeString(website);
     }
 }

@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
         context = this;
         Intent intent = getIntent();
         if (intent != null) {
-            employeeDetailsRemote = (EmployeeDetailsRemote) intent.getSerializableExtra("dataItem");
+            employeeDetailsRemote = intent.getParcelableExtra("dataItem");
             initialiseData();
         }
     }
@@ -40,12 +40,16 @@ public class DetailsActivity extends AppCompatActivity {
         detailsBinding.tvEmail.setText(employeeDetailsRemote.getEmail());
         detailsBinding.tvPhoneNo.setText(employeeDetailsRemote.getPhone());
         detailsBinding.tvUserName.setText(employeeDetailsRemote.getUsername());
-        detailsBinding.tvAddress.setText(employeeDetailsRemote.getAddress().getSuite() + "\n"
-                + employeeDetailsRemote.getAddress().getCity() + "\n"
-                + employeeDetailsRemote.getAddress().getStreet() + "\n"
-                + employeeDetailsRemote.getAddress().getZipcode());
-        detailsBinding.tvCompanyDetails.setText(employeeDetailsRemote.getCompany().getName() + "\n"
-                + employeeDetailsRemote.getCompany().getBs() + "\n"
-                + employeeDetailsRemote.getCompany().getCatchPhrase());
+        if (employeeDetailsRemote.getAddress() != null) {
+            detailsBinding.tvAddress.setText(employeeDetailsRemote.getAddress().getSuite() + "\n"
+                    + employeeDetailsRemote.getAddress().getCity() + "\n"
+                    + employeeDetailsRemote.getAddress().getStreet() + "\n"
+                    + employeeDetailsRemote.getAddress().getZipcode());
+        }
+        if (employeeDetailsRemote.getCompany() != null) {
+            detailsBinding.tvCompanyDetails.setText(employeeDetailsRemote.getCompany().getName() + "\n"
+                    + employeeDetailsRemote.getCompany().getBs() + "\n"
+                    + employeeDetailsRemote.getCompany().getCatchPhrase());
+        }
     }
 }

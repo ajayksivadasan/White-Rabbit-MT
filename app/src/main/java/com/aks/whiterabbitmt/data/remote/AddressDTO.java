@@ -1,9 +1,12 @@
 package com.aks.whiterabbitmt.data.remote;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
-public class AddressDTO {
+public class AddressDTO implements Parcelable {
     @SerializedName("street")
     private String street;
     @SerializedName("suite")
@@ -19,6 +22,25 @@ public class AddressDTO {
 
     @SerializedName("geo")
     private GeoDTO geo;
+
+    public static final Creator<AddressDTO> CREATOR = new Creator<AddressDTO>() {
+        @Override
+        public AddressDTO createFromParcel(Parcel in) {
+            return new AddressDTO(in);
+        }
+
+        @Override
+        public AddressDTO[] newArray(int size) {
+            return new AddressDTO[size];
+        }
+    };
+
+    protected AddressDTO(Parcel in) {
+        street = in.readString();
+        suite = in.readString();
+        city = in.readString();
+        zipcode = in.readString();
+    }
 
     public static AddressDTO objectFromData(String str) {
 
@@ -65,4 +87,16 @@ public class AddressDTO {
         this.geo = geo;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(street);
+        parcel.writeString(suite);
+        parcel.writeString(city);
+        parcel.writeString(zipcode);
+    }
 }
