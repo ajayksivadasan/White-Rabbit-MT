@@ -4,6 +4,7 @@
     package="com.aks.whiterabbitmt">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".WhiteApplication"
         android:allowBackup="true"
@@ -15,7 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.details.DetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.main.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,4 +28,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
