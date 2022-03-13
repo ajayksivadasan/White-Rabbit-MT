@@ -1,16 +1,40 @@
 package com.aks.whiterabbitmt.ui.details;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.aks.whiterabbitmt.R;
+import com.aks.whiterabbitmt.data.remote.EmployeeDetailsRemote;
+import com.aks.whiterabbitmt.databinding.ActivityDetailsBinding;
+import com.bumptech.glide.Glide;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class DetailsActivity extends AppCompatActivity {
+    ActivityDetailsBinding detailsBinding;
+    EmployeeDetailsRemote employeeDetailsRemote = new EmployeeDetailsRemote();
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        detailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_details);
+        context = this;
+        Intent intent = getIntent();
+        if (intent != null) {
+            employeeDetailsRemote = (EmployeeDetailsRemote) intent.getSerializableExtra("dataItem");
+            initialiseData();
+        }
     }
+
+    private void initialiseData() {
+        Glide.with(context).load(employeeDetailsRemote.getProfileImage()).into(detailsBinding.ivProfileImage);
+
+    }
+
 }

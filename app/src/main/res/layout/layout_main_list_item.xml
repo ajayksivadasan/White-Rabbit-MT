@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/str_app_name" />
 
     <LinearLayout
         android:layout_width="0dp"

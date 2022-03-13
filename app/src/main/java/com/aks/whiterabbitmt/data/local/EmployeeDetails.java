@@ -1,10 +1,12 @@
 package com.aks.whiterabbitmt.data.local;
 
-import android.arch.persistence.room.PrimaryKey;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "Employee Details")
 public class EmployeeDetails {
     @PrimaryKey(autoGenerate = false)
     @SerializedName("id")

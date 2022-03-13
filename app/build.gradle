@@ -57,8 +57,8 @@ dependencies {
     implementation 'com.google.dagger:hilt-android:2.40.5'
     annotationProcessor 'com.google.dagger:hilt-android-compiler:2.40.5'
     //room android
-    implementation 'android.arch.persistence.room:runtime:1.1.1'
-    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'androidx.room:room-runtime:2.4.2'
+    annotationProcessor 'androidx.room:room-compiler:2.4.2'
     //kotlin
     implementation 'androidx.core:core-ktx:1.7.0'
     //noinspection DifferentStdlibGradleVersion

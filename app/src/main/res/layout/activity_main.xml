@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="@string/app_name"
+                android:contentDescription="@string/str_app_name"
                 android:src="@drawable/ic_baseline_sync_24" />
         </LinearLayout>
 

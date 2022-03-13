@@ -1,11 +1,11 @@
 package com.aks.whiterabbitmt.data.remote;
 
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.List;
-
 public class EmployeeDetailsRemote implements Serializable {
 
     /**

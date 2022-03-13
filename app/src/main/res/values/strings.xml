@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">White Rabbit MT</string>
+    <string name="str_app_name">White Rabbit MT</string>
     <string name="str_search">Search</string>
+    <string name="str_name">Name</string>
+    <string name="str_user_name">User Name</string>
+    <string name="str_e_mail">E-Mail</string>
+    <string name="str_address">Address</string>
+    <string name="str_phone">Phone No</string>
+    <string name="str_company_details">Company Details</string>
 </resources>
